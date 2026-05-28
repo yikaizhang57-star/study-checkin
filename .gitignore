@@ -1,0 +1,24 @@
+node_modules/
+dist/
+.cache/
+*.log
+.DS_Store
+Thumbs.db
+
+# Android build outputs (源码需跟踪)
+android/app/build/
+android/.gradle/
+android/build/
+android/captures/
+android/local.properties
+*.keystore
+!android/*.keystore
+
+# iOS build outputs (源码需跟踪)
+ios/App/build/
+ios/App/Pods/
+ios/App/*.xcarchive
+ios/App/*.ipa
+ios/App/App.xcworkspace/xcuserdata/
+ios/App/Podfile.lock
+ios/DerivedData/

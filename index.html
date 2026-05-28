@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#4A90D9" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <link rel="manifest" href="/manifest.json" />
+  <title>学习通签到</title>
+  <script type="module" crossorigin src="/assets/index-DqzV0Y_G.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DLmSpHgv.css">
+</head>
+<body>
+  <div id="app">
+    <header class="app-header">
+      <h1>学习通签到</h1>
+      <p class="subtitle" id="user-status">未登录</p>
+    </header>
+
+    <main class="app-main">
+      <!-- 登录面板 -->
+      <section class="card" id="login-section">
+        <h2>账号登录</h2>
+        <form id="login-form">
+          <label class="input-group">
+            <span>手机号/学号</span>
+            <input type="text" id="username" placeholder="请输入手机号或学号" autocomplete="username" />
+          </label>
+          <label class="input-group">
+            <span>密码</span>
+            <input type="password" id="password" placeholder="请输入密码" autocomplete="current-password" />
+          </label>
+          <button type="submit" class="btn btn-primary">登录</button>
+        </form>
+        <p class="hint">账号密码仅在本地存储，不会上传到第三方服务器</p>
+      </section>
+
+      <!-- 位置配置面板 -->
+      <section class="card hidden" id="location-panel">
+        <h2>签到位置</h2>
+        <p class="hint" style="margin-bottom:12px;text-align:left;">
+          <strong>位置签到时自动从签到活动提取目标坐标</strong>，无需手动设置。<br>
+          以下为手动/共享模式（备用）。
+        </p>
+
+        <!-- 模式切换 -->
+        <div class="tabs" id="loc-tabs">
+          <button class="tab active" data-mode="receiver">接收位置</button>
+          <button class="tab" data-mode="sharer">分享位置</button>
+          <button class="tab" data-mode="manual">手动输入</button>
+        </div>
+
+        <!-- 接收模式 -->
+        <div class="tab-content" id="tab-receiver">
+          <div class="input-row">
+            <input type="text" id="relay-server" placeholder="ws://IP:3456" value="ws://127.0.0.1:3456" />
+            <input type="text" id="room-code" placeholder="房码 (如 202)" maxlength="20" />
+            <button class="btn btn-sm" id="btn-join">连接</button>
+          </div>
+          <p class="hint" id="receiver-status">输入房码连接分享者</p>
+        </div>
+
+        <!-- 分享模式 -->
+        <div class="tab-content hidden" id="tab-sharer">
+          <button class="btn btn-sm btn-outline" id="btn-get-real">获取真实位置</button>
+          <button class="btn btn-sm btn-primary" id="btn-share">分享我的位置</button>
+          <p class="hint" id="sharer-status">点击"获取真实位置"获取当前 GPS 坐标，然后分享</p>
+        </div>
+
+        <!-- 手动输入 -->
+        <div class="tab-content hidden" id="tab-manual">
+          <div class="input-row-3">
+            <input type="number" id="manual-lat" placeholder="纬度 (如 39.9042)" step="any" />
+            <input type="number" id="manual-lon" placeholder="经度 (如 116.4074)" step="any" />
+            <input type="text" id="manual-addr" placeholder="地址 (如 北京市)" />
+          </div>
+          <button class="btn btn-sm btn-primary" id="btn-apply-manual">应用坐标</button>
+        </div>
+
+        <!-- 当前伪造坐标显示 -->
+        <div class="coord-display" id="coord-display">
+          <span class="coord-label">当前伪造坐标:</span>
+          <span class="coord-value" id="coord-value">未设置</span>
+        </div>
+      </section>
+
+      <!-- 控制面板 -->
+      <section class="card hidden" id="control-panel">
+        <h2>签到控制</h2>
+
+        <div class="toggle-row">
+          <span>GPS 伪造</span>
+          <label class="switch">
+            <input type="checkbox" id="toggle-gps" />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="toggle-row">
+          <span>自动签到</span>
+          <label class="switch">
+            <input type="checkbox" id="toggle-auto" />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <button class="btn btn-primary" id="btn-detect">手动检测签到</button>
+        <button class="btn btn-outline" id="btn-connect-relay">连接中继服务器</button>
+      </section>
+
+      <!-- 签到状态 -->
+      <section class="card hidden" id="checkin-section">
+        <h2>签到活动</h2>
+        <div id="checkin-status">
+          <p class="loading">等待检测...</p>
+        </div>
+      </section>
+
+      <!-- 日志面板 -->
+      <section class="card hidden" id="log-section">
+        <h2>日志</h2>
+        <div id="log-list"></div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>仅供学习研究，请勿用于违规用途</p>
+    </footer>
+  </div>
+</body>
+</html>
