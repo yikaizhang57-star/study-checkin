@@ -1,0 +1,10 @@
+{
+  "name": "学习通签到",
+  "short_name": "签到",
+  "description": "移动端签到助手",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f6fa",
+  "theme_color": "#4A90D9",
+  "icons": []
+}

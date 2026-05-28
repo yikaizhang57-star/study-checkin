@@ -1,0 +1,29 @@
+{
+  "name": "study-checkin",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "cap:sync": "npx cap sync",
+    "cap:open:android": "npx cap open android",
+    "cap:add:android": "npx cap add android",
+    "cap:add:ios": "npx cap add ios",
+    "cap:copy": "npx cap copy",
+    "relay": "node server/relay.js",
+    "relay:public": "node server/relay.js --port 3456"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.3.4",
+    "@capacitor/cli": "^8.3.4",
+    "@capacitor/core": "^8.3.4",
+    "@capacitor/ios": "^8.3.4",
+    "vite": "^8.0.14",
+    "ws": "^8.21.0"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  }
+}
